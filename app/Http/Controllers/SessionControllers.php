@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+
 class SessionControllers extends Controller
 {
 
@@ -22,7 +24,7 @@ class SessionControllers extends Controller
     public function store() 
     {
 
-    	if ( auth()->attempt(request(['email', 'password']))) {
+    	if (! Auth::attempt(request(['email', 'password']))) {
 
     		return back()->withErrors([
     			'message' => 'Please check your credentails and try again'
